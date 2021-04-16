@@ -46,4 +46,27 @@ router.post('/enquiry', async function(req, res, next) {
   }
 });
 
+// enquiry API
+router.post('/contact', async function(req, res, next) {
+  let client;
+  try{
+      client = await mongodClient.connect(url)
+      let db = client.db("acquainfra")
+      let name = req.body.name
+      let email = req.body.email
+      let query = req.body.query
+      let description = req.body.description
+      
+      let result = await db.collection("contact").insertOne({
+          name,email,query,description
+      })
+      res.json({
+          message:"Success"
+      })
+  }catch(error){
+      client.close()
+      console.log(error)
+  }
+});
+
 module.exports = router;
