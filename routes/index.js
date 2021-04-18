@@ -54,11 +54,11 @@ router.post('/contact', async function(req, res, next) {
       let db = client.db("acquainfra")
       let name = req.body.name
       let email = req.body.email
-      let query = req.body.query
+      let contact = req.body.contact
       let description = req.body.description
       
       let result = await db.collection("contact").insertOne({
-          name,email,query,description
+          name,email,contact,description
       })
       res.json({
           message:"Success"
