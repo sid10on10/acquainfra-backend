@@ -55,10 +55,10 @@ router.post('/contact', async function(req, res, next) {
       let name = req.body.name
       let email = req.body.email
       let contact = req.body.contact
-      let description = req.body.description
+      let query = req.body.query
       
       let result = await db.collection("contact").insertOne({
-          name,email,contact,description
+          name,email,contact,query
       })
       res.json({
           message:"Success"
